@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    id: {
+    Id: {
         type: Number,
-        unique: true
+        unique: true,
+        default: 0
     },
     utype: {
         type: Number,
@@ -12,11 +13,13 @@ const UserSchema = new mongoose.Schema({
     },
     name: {
         type: String,
+        default: null
     },
     uname: {
         type: String,
         unique: true,
-        lowercase: true,
+        message: "Please try a different user name!!!",
+        default: null
     },
     address: {
         type: String,
@@ -24,22 +27,26 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     profile: {
-        type: String
+        type: String,
     },
     cover: {
-        type: String
+        type: String,
     },
     bio: {
-        type: String
+        type: String,
+        default: null
     },
     instagram: {
-        type: String
+        type: String,
+        default: null
     },
     twitter: {
-        type: String
+        type: String,
+        default: null
     },
     website: {
-        type: String
+        type: String,
+        default: null
     },
     verified: {
         type: Number,
@@ -52,16 +59,14 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: Number,
         enum: {
-            values: [1, 2],
+            values: [1, 2, 3],
             default: 1
         }
     },
     created_by: {
         type: Number,
-        enum: {
-            values: [1,2],
-            default: 1
-        }
+        enum: [1,2],
+        default: 1
     },
     created_at: {
         type: Date,
@@ -72,10 +77,8 @@ const UserSchema = new mongoose.Schema({
     },
     modified_by: {
         type: Number,
-        enum: {
-            values: [1,2],
-            default: null
-        }
+        enum: [1,2],
+        default: null
     },
     modified_at: {
         type: Date,
@@ -84,9 +87,9 @@ const UserSchema = new mongoose.Schema({
     modified_ip: {
         type: String,
         default: null
-
- 
     }
-})
+});
 
-module.exports = User = mongoose.model('user',UserSchema);
+var User = mongoose.model('User',UserSchema);
+
+export default User;

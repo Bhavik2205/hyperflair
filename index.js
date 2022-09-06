@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from 'cors';
-import './node_modules/dotenv/config.js'; 
+import './node_modules/dotenv/config.js';
+import userRoute from './routes/user.route.js';
 
 const app = express();
 
@@ -10,6 +11,9 @@ const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
+
+//Route
+app.use('/api', userRoute);
 
 //PORT in use
 app.listen(process.env.PORT);
@@ -20,5 +24,5 @@ mongoose.connect(process.env.DB_CONNECTION, {useUnifiedTopology: true, useNewUrl
         console.log(`Server started successfully on Port: ${process.env.PORT}`)
     })
     .catch((error) => {
-        console.error({message: error.message})
+        console.error({message: "error"})
     })
