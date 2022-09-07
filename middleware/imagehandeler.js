@@ -24,9 +24,6 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({storage: storage, fileFilter: fileFilter});
 
-const imageHandeler = upload.fields([
-    {name: 'profile', maxcount: 1},
-    {name: 'cover', maxcount: 1}
-])
+const imageHandeler = upload.fields([{name : 'cover'}, {name : 'profile'}]);
 
 export default imageHandeler;
